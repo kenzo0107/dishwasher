@@ -1,0 +1,4 @@
+keyup=
+keydown=sh /home/pi/bluebutton/dishwasher.sh start
+longup=
+longdown=sh /home/pi/bluebutton/dishwasher.sh reset
