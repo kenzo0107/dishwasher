@@ -49,7 +49,7 @@ start() {
 
 read() {
   LATEST_DATE=$(cat $LATEST_FILE)
-  notify_to_googlehome $(date -d "${LATEST_DATE}")
+  notify_to_googlehome "$(date -d "${LATEST_DATE}")"
 }
 
 reset() {
