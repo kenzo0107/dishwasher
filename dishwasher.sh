@@ -6,8 +6,8 @@ readonly LINENOTIFY_URL="https://notify-api.line.me/api/notify"
 readonly LATEST_FILE=/home/pi/bluebutton/dishwasher_latest_start_datetime.txt
 
 notify_start() {
-  curl -X POST -d "text=食洗機を開始しました" $GOOGLEHOME_URL
-  curl -X POST -H "Authorization: Bearer ${LINENOTIFY_TOKEN}" -F "message=食洗機スタート！" $LINENOTIFY_URL
+  notify_to_googlehome "食洗機を開始しました"
+  notify_to_line "食洗機スタート！"
   echo "$(date +'%Y-%m-%d %H:%M:%S')" > $LATEST_FILE
 }
 
@@ -15,6 +15,15 @@ notify_nostart() {
   curl -X POST -d "text=食洗機の開始時刻からまだ ${INTERVAL} 分以内です。まだ完了していないと思われます。" $GOOGLEHOME_URL
 }
 
+notify_to_googlehome() {
+  MESSAGE="$1"
+  curl -X POST -d "text=${MESSAGE}" $GOOGLEHOME_URL
+}
+
+notify_to_line() {
+  MESSAGE="$1"
+  curl -X POST -H "Authorization: Bearer ${LINENOTIFY_TOKEN}" -F "message=${MESSAGE}" $LINENOTIFY_URL
+}
 
 start() {
   LATEST_DATE=$(cat $LATEST_FILE)
@@ -38,6 +47,11 @@ start() {
   fi
 }
 
+read() {
+  LATEST_DATE=$(cat $LATEST_FILE)
+  notify_to_googlehome $(date -d "${LATEST_DATE}")
+}
+
 reset() {
   curl -X POST -d "text=食洗機の開始時刻をリセットしました" $GOOGLEHOME_URL
   echo "" > $LATEST_FILE
@@ -45,5 +59,6 @@ reset() {
 
 case "$1" in
   start ) start ;;
+  read )  read ;;
   reset ) reset ;;
 esac
