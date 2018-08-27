@@ -1,0 +1,15 @@
+[Unit]
+Description=bluebutton Server
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/pi/bluebutton/bluebutton.sh
+Restart=on-failure
+RestartSec=10
+KillMode=process
+WorkingDirectory=/home/pi/bluebutton
+
+[Install]
+WantedBy=multi-user.target

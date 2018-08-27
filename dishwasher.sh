@@ -1,5 +1,8 @@
 #!/bin/sh
 
+readonly GOOGLE_HOME_NOTIFIER_URL="<please change yours>"
+readonly LINENOTIFY_TOKEN="<please change yours>"
+
 readonly INTERVAL=60
 readonly GOOGLEHOME_URL="${GOOGLE_HOME_NOTIFIER_URL}/google-home-notifier"
 readonly LINENOTIFY_URL="https://notify-api.line.me/api/notify"
