@@ -7,8 +7,7 @@ User=root
 ExecStart=/home/pi/bluebutton/bluebutton.sh
 Restart=on-failure
 RestartSec=10
-KillMode=process
-WorkingDirectory=/home/pi/bluebutton
+KillMode=mixed
 
 [Install]
 WantedBy=multi-user.target
