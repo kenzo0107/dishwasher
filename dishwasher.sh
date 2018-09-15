@@ -1,10 +1,9 @@
 #!/bin/sh
 
-readonly GOOGLE_HOME_NOTIFIER_URL="<please change yours>"
 readonly LINENOTIFY_TOKEN="<please change yours>"
 
 readonly INTERVAL=60
-readonly GOOGLEHOME_URL="${GOOGLE_HOME_NOTIFIER_URL}/google-home-notifier"
+readonly GOOGLEHOME_URL="http://127.0.0.1:8091/google-home-notifier"
 readonly LINENOTIFY_URL="https://notify-api.line.me/api/notify"
 readonly LATEST_FILE=/home/pi/bluebutton/dishwasher_latest_start_datetime.txt
 
